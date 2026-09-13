@@ -4,7 +4,7 @@
 [![DSP](https://img.shields.io/badge/Signal%20Processing-FFT%20%2F%20STFT-orange.svg)]()
 [![License](https://img.shields.io/badge/license-MIT-green.svg)]()
 
-BİL314 - Sinyaller ve Sistemler dersi kapsamında geliştirilen bu proje; sayısal ses sinyallerindeki gürültü bileşenlerini **Hızlı Fourier Dönüşümü (FFT)** ve spektral çıkarma (spectral gating) yöntemleriyle tespit edip temizleyen, hem çevrimdışı (dosya tabanlı) hem de mikrofon üzerinden gerçek zamanlı (real-time) çalışan bir gürültü engelleme sistemidir[cite: 1].
+BİL314 - Sinyaller ve Sistemler dersi kapsamında geliştirilen bu proje; sayısal ses sinyallerindeki gürültü bileşenlerini **Hızlı Fourier Dönüşümü (FFT)** ve spektral çıkarma (spectral gating) yöntemleriyle tespit edip temizleyen, hem çevrimdışı (dosya tabanlı) hem de mikrofon üzerinden gerçek zamanlı (real-time) çalışan bir gürültü engelleme sistemidir.
 
 ---
 
@@ -24,19 +24,19 @@ BİL314 - Sinyaller ve Sistemler dersi kapsamında geliştirilen bu proje; sayı
 
 ## 🚀 Proje Özeti ve Temel Özellikler
 
-- **Zaman ve Frekans Domeni Analizi:** Ses sinyalinin dalga formu (`waveshow`) ve FFT ile spektral güç yoğunluğu grafikleri[cite: 1].
-- **SNR (Sinyal-Gürültü Oranı) Hesaplama:** Hem zaman tabanlı eşikleme (amplitude thresholding) hem de bant enerjisi oranıyla teorik ve frekans domeni SNR hesabı[cite: 1].
-- **Spektral Gürültü Giderme:** Gürültü profili (noise profile) çıkarımı üzerinden spektral filtreleme ile arka plan uğultusu, dip ses ve ortam parazitlerinin giderilmesi[cite: 1].
-- **Canlı Akış (Real-Time Callback):** `sounddevice` ve blok bazlı işleme mimarisiyle mikrofondan alınan sesin filtrelenerek anlık olarak hoparlöre aktarılması[cite: 1].
-- **Bandpass Filtreleme:** Butterworth bandpass filtresi (500 Hz – 4400 Hz) ile insan ses bandı dışındaki harmoniklerin ve frekansların bastırılması[cite: 1].
+- **Zaman ve Frekans Domeni Analizi:** Ses sinyalinin dalga formu (`waveshow`) ve FFT ile spektral güç yoğunluğu grafikleri .
+- **SNR (Sinyal-Gürültü Oranı) Hesaplama:** Hem zaman tabanlı eşikleme (amplitude thresholding) hem de bant enerjisi oranıyla teorik ve frekans domeni SNR hesabı .
+- **Spektral Gürültü Giderme:** Gürültü profili (noise profile) çıkarımı üzerinden spektral filtreleme ile arka plan uğultusu, dip ses ve ortam parazitlerinin giderilmesi .
+- **Canlı Akış (Real-Time Callback):** `sounddevice` ve blok bazlı işleme mimarisiyle mikrofondan alınan sesin filtrelenerek anlık olarak hoparlöre aktarılması .
+- **Bandpass Filtreleme:** Butterworth bandpass filtresi (500 Hz – 4400 Hz) ile insan ses bandı dışındaki harmoniklerin ve frekansların bastırılması .
 
 ---
 
 ## 🔬 Algoritma ve Çalışma Mantığı
 
-1. **Örnekleme & Sinyal Dönüşümü:** $x[n]$ ayrık ses sinyali `librosa` ile yüklenir ve genlik değerleri normalize edilir[cite: 1].
-2. **Hızlı Fourier Dönüşümü (FFT):** Zaman domenindeki sinyal frekans bileşenlerine ayrıştırılarak konuşma bandı (300 Hz – 4000 Hz) ve gürültü baskın bölgeler ayrıştırılır[cite: 1].
-3. **Spektral Azaltma & Karşılaştırma:** Kayıttan alınan ortam gürültü kesiti temel alınarak spektral baskılama uygulanır[cite: 1]. Temizlenmiş sinyal ile ham sinyalin frekans spektrumları görsel olarak karşılaştırılır[cite: 1].
+1. **Örnekleme & Sinyal Dönüşümü:** $x[n]$ ayrık ses sinyali `librosa` ile yüklenir ve genlik değerleri normalize edilir .
+2. **Hızlı Fourier Dönüşümü (FFT):** Zaman domenindeki sinyal frekans bileşenlerine ayrıştırılarak konuşma bandı (300 Hz – 4000 Hz) ve gürültü baskın bölgeler ayrıştırılır .
+3. **Spektral Azaltma & Karşılaştırma:** Kayıttan alınan ortam gürültü kesiti temel alınarak spektral baskılama uygulanır . Temizlenmiş sinyal ile ham sinyalin frekans spektrumları görsel olarak karşılaştırılır .
 
 ---
 
@@ -54,7 +54,7 @@ FFT_ses_temizleme/
 
 ## 🛠️ Kurulum
 
-Python 3.10 sürümüyle izole bir Conda ortamı oluşturulması önerilir[cite: 1]:
+Python 3.10 sürümüyle izole bir Conda ortamı oluşturulması önerilir :
 
 ```bash
 # 1. Depoyu klonlayın
@@ -78,28 +78,28 @@ pip install numpy scipy matplotlib librosa noisereduce soundfile sounddevice pya
 
 ## 💻 Kullanım Senaryoları
 
-Test ses dosyalarınızın kayıpsız `.wav` formatında olması önerilir[cite: 1].
+Test ses dosyalarınızın kayıpsız `.wav` formatında olması önerilir .
 
 ### 1. Sinyal Analizi ve SNR Tespiti (`sesanalizi.py`)
-Mevcut ses dosyasının zaman serisi dalga formunu, örnekleme frekansını, sinyal gücünü ve FFT tabanlı frekans spektrumunu inceler[cite: 1]:
+Mevcut ses dosyasının zaman serisi dalga formunu, örnekleme frekansını, sinyal gücünü ve FFT tabanlı frekans spektrumunu inceler :
 ```bash
 python sesanalizi.py
 ```
-- **Çıktılar:** Dalga boyu grafiği, 0–Fs/2 frekans spektrumu, zaman & frekans domeni SNR değerleri[cite: 1].
+- **Çıktılar:** Dalga boyu grafiği, 0–Fs/2 frekans spektrumu, zaman & frekans domeni SNR değerleri .
 
 ### 2. Dosya Üzerinden Ses Temizleme (`sestemizleme.py`)
-Belirlenen gürültü aralığını referans alarak ses dosyasını filtreler, temiz halini yeni bir `.wav` dosyası olarak kaydeder ve FFT karşılaştırma spektrumunu çizer[cite: 1]:
+Belirlenen gürültü aralığını referans alarak ses dosyasını filtreler, temiz halini yeni bir `.wav` dosyası olarak kaydeder ve FFT karşılaştırma spektrumunu çizer :
 ```bash
 python sestemizleme.py
 ```
-- **Parametre Ayarı:** Kod içerisindeki `noise_sample = y[:int(sr * 5)]` kısmını kendi kaydınızdaki yalnızca arka plan gürültüsünün bulunduğu saniye aralığına göre güncelleyebilirsiniz[cite: 1].
+- **Parametre Ayarı:** Kod içerisindeki `noise_sample = y[:int(sr * 5)]` kısmını kendi kaydınızdaki yalnızca arka plan gürültüsünün bulunduğu saniye aralığına göre güncelleyebilirsiniz .
 
 ### 3. Gerçek Zamanlı (Canlı) Gürültü Giderme (`gercekzaman.py`)
-Çalıştırıldığında önce 2 saniye ortamı dinleyerek referans gürültü matrisini çıkarır, ardından gerçek zamanlı callback akışında Butterworth Bandpass ve gürültü azaltımını uygulayarak temiz sesi çıkışa verir[cite: 1]:
+Çalıştırıldığında önce 2 saniye ortamı dinleyerek referans gürültü matrisini çıkarır, ardından gerçek zamanlı callback akışında Butterworth Bandpass ve gürültü azaltımını uygulayarak temiz sesi çıkışa verir :
 ```bash
 python gercekzaman.py
 ```
-- Programı sonlandırmak için terminalde `Enter` tuşuna basmanız yeterlidir[cite: 1].
+- Programı sonlandırmak için terminalde `Enter` tuşuna basmanız yeterlidir .
 
 ---
 
@@ -107,13 +107,13 @@ python gercekzaman.py
 
 | Kütüphane | Kullanım Amacı |
 |---|---|
-| **NumPy** | Matris işlemleri, FFT spektral vektör hesapları ve dizi manipülasyonu[cite: 1] |
-| **SciPy** | Hızlı Fourier Dönüşümü (`scipy.fft`) ve Butterworth filtre tasarımı[cite: 1] |
-| **Librosa** | Ses yükleme, zaman domeni gösterimi ve örnekleme frekansı yönetimi[cite: 1] |
-| **NoiseReduce** | Spektral çıkarma (spectral gating) tabanlı dinamik gürültü filtreleme[cite: 1] |
-| **SoundDevice** | Düşük gecikmeli gerçek zamanlı ses girişi ve çıkış akışı yönetimi[cite: 1] |
-| **SoundFile** | `.wav` formatında kayıpsız ses dışa aktarma[cite: 1] |
-| **Matplotlib** | Zaman serisi ve FFT frekans spektrumu görselleştirme[cite: 1] |
+| **NumPy** | Matris işlemleri, FFT spektral vektör hesapları ve dizi manipülasyonu  |
+| **SciPy** | Hızlı Fourier Dönüşümü (`scipy.fft`) ve Butterworth filtre tasarımı  |
+| **Librosa** | Ses yükleme, zaman domeni gösterimi ve örnekleme frekansı yönetimi  |
+| **NoiseReduce** | Spektral çıkarma (spectral gating) tabanlı dinamik gürültü filtreleme  |
+| **SoundDevice** | Düşük gecikmeli gerçek zamanlı ses girişi ve çıkış akışı yönetimi  |
+| **SoundFile** | `.wav` formatında kayıpsız ses dışa aktarma  |
+| **Matplotlib** | Zaman serisi ve FFT frekans spektrumu görselleştirme  |
 
 ---
 
